@@ -1,0 +1,23 @@
+:host {
+  position: fixed;         /* fixed gives you full-screen control */
+  top: 0;
+  left: 0;
+  height: 100vh;           /* ensures full height of viewport */
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: brightness(0.5);
+  background-color: rgba(0, 0, 0, 0.2); /* optional translucent backdrop */
+  z-index: 1000;
+}
+
+.user-details-container {
+  backdrop-filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+  background: rgb(230, 224, 224);
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,40 @@
+<div class="user-list-container">
+  <table>
+    <thead>
+      <tr>
+        @for (key of getKeys(); track key) {
+          <th>{{ key }}</th>
+        }
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users(); track user) {
+        <tr (click)="viewDetails(user)">
+          @for (key of getKeys(); track key) {
+            <td>
+              @if (editingIdx() === users().indexOf(user)) {
+                <input [formControl]="formSignals[users().indexOf(user)].get(key)">
+              } @else {
+                {{ user[key] }}
+              }
+            </td>
+          }
+          <td>
+            @if (editingIdx() !== users().indexOf(user)) {
+              <button (click)="startEdit(users().indexOf(user)); $event.stopPropagation()">Edit</button>
+            } @else {
+              <button (click)="saveEdit(users().indexOf(user)); $event.stopPropagation()">Save</button>
+            }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<ng-container>
+  @if(isDetailsVisible()) {
+    <app-user-details [user]="userToBeDisplayed() ?? undefined" (close)="isDetailsVisible.set(false)"></app-user-details>
+  }
+</ng-container>
